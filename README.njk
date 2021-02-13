@@ -1,0 +1,38 @@
+{% include "module-header" %}
+
+# Installation
+
+{%- include "installation" -%}
+
+# Synopsis
+
+```ts
+import importModule from "import-glocal";
+
+// Try to import "my-plugin" or "awesome-my-plugin" from local or global (if parent model is global or linked) modules.
+const imported = await importModule("my-plugin", { prefix: "awesome-" });
+const importedTypeScript = await importModule<default: (name: string) => string>("my-plugin");
+```
+
+# Details
+
+`import-glocal` asynchronously imports a module from local or global modules installed by `npm` or `yarn`. Local modules are preferred.
+Global modules are imported only if your module is also installed globally or linked by `npm` or `yarn` (`options.linked`).
+
+You can provide a prefix to import module with given name or alternative name with a prefix, which my be useful to support plugin modules
+with optional short names.
+
+**CAUTION:** In normal conditions, importing a global module is an anti-pattern. Don't import global modules if you don't have a reason.
+
+Possible reasons to use this module:
+
+- Your CLI is installed globally and you want to support a modular plugin structure, so you have to use globally installed plugin modules.
+- Your library is installed globally and you want to support optional modules installed globally.
+
+<!-- usage -->
+
+<!-- commands -->
+
+# API
+
+{% include "api.md" %}
